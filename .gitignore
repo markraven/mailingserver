@@ -1,2 +1,3 @@
 .vagrant
 npm-debug*
+node_modules
