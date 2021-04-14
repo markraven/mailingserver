@@ -21,7 +21,7 @@ let i=0;
 router.post('/login',((req, res) => {
     const username=req.body.username;
     const passw=req.body.password
-    console.log(username);
+
   
                     passwd.checkPassword(username,passw,function(err,response){
                         if(err){
