@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 var cors = require('cors');
-const productRoutes = require("../mailingserver/routes/mails");
+const productRoutes = require("./routes/mails");
 const userRoutes=require("./routes/user");
 
 app.use(bodyParser.urlencoded({ extended: false }));
