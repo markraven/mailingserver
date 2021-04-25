@@ -9,23 +9,16 @@ const passwd = require('passwd-linux');
 //hashelést be kell állítani a passwordea, használni a bcrypt */
 
 //hash passwd
-const { request, response } = require('express');
-let emails=[];
-let users=[];
-let i=0;
-
-
-    let uemails=[];
-    let upasswords=[];
 
 router.post('/login',((req, res) => {
     const username=req.body.username;
-    const passw=req.body.password
-
-  
+    const passw=req.body.password;
+                    
                     passwd.checkPassword(username,passw,function(err,response){
                         if(err){
-                            console.log(err);
+                            return res.status(500).json({
+                                message:"Linux user not found."
+                            });
                         }else{
                             if(response){
                     
@@ -45,7 +38,7 @@ router.post('/login',((req, res) => {
                             }
                             else{
                                return res.status(500).json({
-                                    message:"Authentication Failed"
+                                    message:"Authentication Failed."
                                 });
                             }
                         }
