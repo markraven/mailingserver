@@ -26,11 +26,14 @@ router.post('/sending',checkAuth ,(req, res,next) => {
     const token = req.headers.authorization.split(" ")[1];
     const decodedTokenMeesage=jwt.verify(token,process.env.JWT_KEY,'HS512');
     const mail = {
-        message: req.body.message,
-        cimzett: req.body.felado,
-        targy:req.body.targy
+        message: req.body.text,
+        to: req.body.to,
+        subject:req.body.subject,
+        
     };
-    let sendMailText=' echo "' + mail.message + '" | mail -s "'+ mail.targy +'" '+ mail.cimzett+' -aFrom:' + decodedTokenMeesage.email;
+   
+    let sendMailText=' echo "' + mail.message + '" | mail -s "'+ mail.subject +'" '+ mail.to+' -aFrom:' + decodedTokenMeesage.email;
+    
     let sendMessageByUser=exec(sendMailText, function (err, stdout,stderr){
         if(err){
             res.status(500).json({
